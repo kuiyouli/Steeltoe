@@ -23,10 +23,19 @@ namespace Steeltoe.Common.Kubernetes
 {
     public static class KubernetesClientHelpers
     {
+        public static IKubernetes GetKubernetesClient(IConfiguration configuration, Action<KubernetesClientConfiguration> kubernetesClientConfiguration = null, ILogger logger = null)
+        {
+            return GetKubernetesClient(new KubernetesApplicationOptions(configuration), kubernetesClientConfiguration, logger);
+        }
+
+        [Obsolete("Makes no sense")]
         public static IKubernetes GetKubernetesClient(IConfiguration configuration, KubernetesApplicationOptions appInfo = null, Action<KubernetesClientConfiguration> kubernetesClientConfiguration = null, ILogger logger = null)
         {
-            appInfo ??= new KubernetesApplicationOptions(configuration);
+            return GetKubernetesClient(appInfo ??= new KubernetesApplicationOptions(configuration), kubernetesClientConfiguration, logger);
+        }
 
+        public static IKubernetes GetKubernetesClient(KubernetesApplicationOptions appInfo, Action<KubernetesClientConfiguration> kubernetesClientConfiguration = null, ILogger logger = null)
+        {
             KubernetesClientConfiguration k8sConfig = null;
 
             try

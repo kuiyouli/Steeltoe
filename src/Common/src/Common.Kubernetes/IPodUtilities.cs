@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Steeltoe.Management.Endpoint.Info
+using k8s.Models;
+using System.Threading.Tasks;
+
+namespace Steeltoe.Common.Kubernetes
 {
-    public interface IInfoContributor
+    public interface IPodUtilities
     {
-        void Contribute(IInfoBuilder builder);
+        Task<V1Pod> GetCurrentPodAsync();
     }
 }

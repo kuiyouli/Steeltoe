@@ -14,7 +14,7 @@
 
 using System.Collections.Generic;
 
-namespace Steeltoe.Management.Endpoint.Info
+namespace Steeltoe.Management.Info
 {
     public interface IInfoBuilder
     {

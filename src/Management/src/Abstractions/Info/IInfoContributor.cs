@@ -12,23 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.Extensions.Configuration;
-using Steeltoe.Management.Info;
-
-namespace Steeltoe.Management.Endpoint.Info.Contributor
+namespace Steeltoe.Management.Info
 {
-    public class AppSettingsInfoContributor : AbstractConfigurationContributor, IInfoContributor
+    public interface IInfoContributor
     {
-        private const string APPSETTINGS_PREFIX = "info";
-
-        public AppSettingsInfoContributor(IConfiguration config)
-            : base(config)
-        {
-        }
-
-        public void Contribute(IInfoBuilder builder)
-        {
-            Contribute(builder, APPSETTINGS_PREFIX, false);
-        }
+        void Contribute(IInfoBuilder builder);
     }
 }
