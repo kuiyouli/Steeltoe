@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using Microsoft.Extensions.DependencyInjection;
+using Steeltoe.Management.Endpoint.CloudFoundry;
+using Steeltoe.Management.Endpoint.Hypermedia;
 
 namespace Steeltoe.Management.Endpoint
 {
@@ -20,11 +22,10 @@ namespace Steeltoe.Management.Endpoint
     {
         public static void RegisterEndpointOptions(this IServiceCollection services, IEndpointOptions options)
         {
-            var mgmtOptions = services.BuildServiceProvider().GetServices<IManagementOptions>();
-            foreach (var mgmt in mgmtOptions)
-            {
-                mgmt.EndpointOptions.Add(options);
-            }
+            var actuatorManagement = services.BuildServiceProvider().GetService<ActuatorManagementOptions>();
+            actuatorManagement?.EndpointOptions.Add(options);
+            var cfManagement = services.BuildServiceProvider().GetService<CloudFoundryManagementOptions>();
+            cfManagement?.EndpointOptions.Add(options);
         }
     }
 }

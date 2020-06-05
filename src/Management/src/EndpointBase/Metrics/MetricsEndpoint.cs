@@ -37,6 +37,7 @@ namespace Steeltoe.Management.Endpoint.Metrics
         {
             _exporter = exporter ?? throw new ArgumentNullException(nameof(exporter));
             _logger = logger;
+            ExactMatch = false;
         }
 
         public new IMetricsEndpointOptions Options
@@ -51,10 +52,11 @@ namespace Steeltoe.Management.Endpoint.Metrics
         {
             GetMetricsCollection(out var measurements, out var availTags);
 
-            var metricNames = new HashSet<string>(measurements.Keys);
+            var metricNames = new HashSet<string>();
+            
             if (request == null)
             {
-                return new MetricsListNamesResponse(new HashSet<string>(measurements.Keys));
+                return new MetricsListNamesResponse(new HashSet<string>(){"test"});
             }
             else
             {

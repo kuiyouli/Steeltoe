@@ -578,7 +578,7 @@ namespace Steeltoe.Stream.Binder
             protected internal ErrorInfrastructure ErrorInfrastructure { get; }
         }
 
-        protected class ErrorInfrastructure
+        public class ErrorInfrastructure
         {
             public ErrorInfrastructure(ISubscribableChannel errorChannel, ErrorMessageSendingRecoverer recoverer, IMessageHandler handler)
             {

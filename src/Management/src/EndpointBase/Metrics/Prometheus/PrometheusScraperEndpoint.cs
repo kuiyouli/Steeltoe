@@ -29,6 +29,7 @@ namespace Steeltoe.Management.Endpoint.Metrics
             : base(options)
         {
             _exporter = exporter ?? throw new ArgumentNullException(nameof(exporter));
+            ExactMatch = false;
         }
 
         public new IEndpointOptions Options
